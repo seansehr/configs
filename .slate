@@ -1,0 +1,58 @@
+# This is the default .slate file.
+# If no ~/.slate file exists this is the file that will be used.
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config orderScreensLeftToRight true
+
+# Monitor Aliases
+alias mon-laptop      1680x1050
+alias mon-tall        1080x1920
+
+# Laptop Monitor
+alias mon-laptop-sizing move screenOriginX;screenOriginY screenSizeX/4*3;screenSizeY ${mon-laptop}
+
+# Tall Monitor
+alias tall-mon-top move screenOriginX;screenOriginY screenSizeX;screenSizeY/3 ${mon-tall}
+alias tall-mon-middle move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX;screenSizeY*.4666 ${mon-tall}
+alias tall-mon-bottom move screenOriginX;screenOriginY+screenSizeY*.8 screenSizeX;screenSizeY*.2 ${mon-tall}
+
+# Commands
+alias throw-left throw left resize:screenSizeX;screenSizeY/3
+alias throw-right ${mon-laptop-sizing}
+
+# Move Bindings
+bind m:ctrl;cmd;alt ${tall-mon-top}
+bind ,:ctrl;cmd;alt ${tall-mon-middle}
+bind .:ctrl;cmd;alt ${tall-mon-bottom}
+bind /:ctrl;cmd;alt ${mon-laptop-sizing}
+
+# Layouts
+layout 1mon 'Sublime Text 2':IGNORE_FAIL,REPEAT ${mon-laptop-sizing}
+layout 1mon 'iTerm':IGNORE_FAIL ${mon-laptop-sizing} | nudge +15% 0
+layout 1mon 'Google Chrome':IGNORE_FAIL,REPEAT ${mon-laptop-sizing} | nudge +30% 0
+bind 1:ctrl;cmd;alt layout 1mon
+
+layout 2mon 'Sublime Text 2':IGNORE_FAIL,REPEAT ${tall-mon-middle}
+layout 2mon 'Atom':IGNORE_FAIL ${tall-mon-middle}
+layout 2mon 'iTerm':IGNORE_FAIL ${tall-mon-bottom}
+layout 2mon 'Google Chrome':IGNORE_FAIL,REPEAT ${mon-laptop-sizing}
+layout 2mon 'HipChat':IGNORE_FAIL corner bottom-right
+layout 2mon 'Textual Trial':IGNORE_FAIL corner top-right
+bind 2:ctrl;cmd;alt layout 2mon
+
+# Push Bindings
+bind right:ctrl;cmd  push right bar-resize:screenSizeX/2
+bind left:ctrl;cmd   push left  bar-resize:screenSizeX/2
+
+# Nudge Bindings
+bind up:ctrl;alt;cmd    nudge +0 -11.111%
+bind down:ctrl;alt;cmd  nudge +0 +11.111%
+
+# Throw Bindings
+bind right:ctrl;alt;cmd ${throw-right}
+bind left:ctrl;alt;cmd  ${throw-left}
+
+# Window Hints
+bind esc:cmd hint
