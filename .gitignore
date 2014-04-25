@@ -4,3 +4,5 @@ Sublime Text 2/Packages/User/Package Control.ca-bundle
 Sublime Text 2/Packages/User/Package Control.system-ca-bundle
 Sublime Text 2/Packages/User/Package Control.cache/
 Sublime Text 2/Packages/User/Package Control.ca-certs/
+
+*.DS_Store
