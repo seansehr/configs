@@ -3,6 +3,7 @@
 	"installed_packages":
 	[
 		"Autoprefixer",
+		"Better CoffeeScript",
 		"Emmet",
 		"Package Control",
 		"Sass"
