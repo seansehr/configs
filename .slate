@@ -17,12 +17,15 @@ alias mon-laptop-sizing move screenOriginX;screenOriginY screenSizeX/4*3;screenS
 alias tall-mon-top move screenOriginX;screenOriginY screenSizeX;screenSizeY/3 ${mon-tall}
 alias tall-mon-middle move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX;screenSizeY*.4666 ${mon-tall}
 alias tall-mon-bottom move screenOriginX;screenOriginY+screenSizeY*.8 screenSizeX;screenSizeY*.2 ${mon-tall}
+alias tall-mon-top-half move screenOriginX;screenOriginY screenSizeX;screenSizeY/2 ${mon-tall}
+alias tall-mon-bottom-half move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2 ${mon-tall}
 
 # Commands
 alias throw-left throw left resize:screenSizeX;screenSizeY/3
 alias throw-right ${mon-laptop-sizing}
 
 # Move Bindings
+bind n:ctrl;cmd;alt ${tall-mon-top-half}
 bind m:ctrl;cmd;alt ${tall-mon-top}
 bind ,:ctrl;cmd;alt ${tall-mon-middle}
 bind .:ctrl;cmd;alt ${tall-mon-bottom}
@@ -41,6 +44,12 @@ layout 2mon 'Google Chrome':IGNORE_FAIL,REPEAT ${mon-laptop-sizing}
 layout 2mon 'HipChat':IGNORE_FAIL corner bottom-right
 layout 2mon 'Textual Trial':IGNORE_FAIL corner top-right
 bind 2:ctrl;cmd;alt layout 2mon
+
+layout 2monalt 'Sublime Text 2':IGNORE_FAIL,REPEAT ${tall-mon-bottom-half}
+layout 2monalt 'iTerm':IGNORE_FAIL corner top-right
+layout 2monalt 'Google Chrome':IGNORE_FAIL,REPEAT ${mon-laptop-sizing}
+layout 2monalt 'HipChat':IGNORE_FAIL corner bottom-right
+bind 3:ctrl;cmd;alt layout 2monalt
 
 # Push Bindings
 bind right:ctrl;cmd  push right bar-resize:screenSizeX/2
